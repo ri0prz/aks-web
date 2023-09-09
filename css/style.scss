@@ -1,0 +1,3137 @@
+// Initialization
+$primeBlueColor: rgb(56, 45, 216);
+$primeOrangeColor: #d8662d;
+$gradientBlueColor: linear-gradient($primeBlueColor, rgb(95, 95, 255));
+$gradientOrangeColor: linear-gradient($primeOrangeColor, rgb(255, 169, 126));
+$brownColor: #000095;
+
+// Mixins
+@mixin size($width, $height) {
+   width: $width;
+   height: $height;
+}
+@mixin activeState($color) {
+   animation: 1s active;
+   @keyframes active {
+      from {
+         background: $color;
+      }
+   }
+}
+
+// Scrollbar
+::-webkit-scrollbar {
+   width: 4px;
+}
+::-webkit-scrollbar-track {
+   background-color: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+   background-color: #888;
+}
+
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: "DM Sans";
+   scrollbar-color: #888 #f1f1f1;
+   scrollbar-width: thin;
+   cursor: default;
+}
+
+h1 {
+   font-size: clamp(40px, 6vw, 70px);
+}
+h2 {
+   font-size: clamp(32px, 6vw, 60px);
+}
+p {
+   color: rgb(66, 66, 66);
+   font-size: clamp(26px, 6vw, 45px);
+}
+button {
+   cursor: pointer;
+}
+
+.blue {
+   color: $primeBlueColor;
+}
+.orange {
+   color: $primeOrangeColor;
+}
+.orange2 {
+   background-color: $primeOrangeColor;
+   padding: 4px 16px;
+   border-radius: 8px;
+}
+.marked {
+   background-image: linear-gradient(
+      to right,
+      $primeBlueColor,
+      $primeOrangeColor
+   );
+   background-clip: text;
+   color: transparent;
+}
+.apartement {
+   background-color: rgb(216, 102, 45);
+}
+.residence {
+   background-color: blue;
+}
+
+html {
+   scroll-behavior: smooth;
+}
+
+header {
+   @include size(100%, 5rem);
+
+   background-color: rgba($color: #fff, $alpha: 0.8);
+   backdrop-filter: blur(100px);
+   box-shadow: 0 0 20px rgba($color: #000000, $alpha: 0.1);
+   position: fixed;
+   top: 0;
+   left: 0;
+   z-index: 1;
+
+   nav .left {
+      cursor: pointer;
+   }
+
+   /* Large Screens */
+   @media (min-width: 1400px) {
+      nav {
+         @include size(100%, 100%);
+
+         display: flex;
+         justify-content: space-around;
+         align-items: center;
+
+         .left {
+            @include size(4rem, 100%);
+
+            background: url("../images/aks-logo.png");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+         }
+
+         .right {
+            button {
+               $timing: 3s;
+               position: relative;
+               word-spacing: -2px;
+               border: none;
+               background-color: transparent;
+               margin: 0 10px;
+               font-size: 16px;
+               transition: $timing;
+
+               &::after {
+                  width: 0%;
+                  height: 2px;
+                  content: "";
+                  position: absolute;
+                  bottom: -5px;
+                  border-radius: 50px;
+                  left: 0;
+                  transition: $timing;
+               }
+
+               &.active {
+                  transition: $timing;
+
+                  &::after {
+                     width: 100%;
+                     background: linear-gradient(
+                        to left,
+                        $primeBlueColor,
+                        $primeOrangeColor
+                     );
+                     transition: $timing;
+                  }
+
+                  letter-spacing: 0.5px;
+                  background-image: linear-gradient(
+                     to right,
+                     $primeBlueColor,
+                     $primeOrangeColor
+                  );
+                  background-clip: text;
+                  color: transparent;
+               }
+            }
+         }
+      }
+   }
+
+   /* Desktop and Laptop */
+   @media (min-width: 1200px) and (max-width: 1399px) {
+      nav {
+         @include size(100%, 100%);
+
+         display: flex;
+         justify-content: space-around;
+         align-items: center;
+
+         .left {
+            @include size(4rem, 100%);
+
+            background: url("../images/aks-logo.png");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+         }
+
+         .right {
+            button {
+               $timing: 3s;
+               position: relative;
+               word-spacing: -2px;
+               border: none;
+               background-color: transparent;
+               margin: 0 10px;
+               font-size: 16px;
+               transition: $timing;
+
+               &::after {
+                  width: 0%;
+                  height: 2px;
+                  content: "";
+                  position: absolute;
+                  bottom: -5px;
+                  border-radius: 50px;
+                  left: 0;
+                  transition: $timing;
+               }
+
+               &.active {
+                  transition: $timing;
+
+                  &::after {
+                     width: 100%;
+                     background: linear-gradient(
+                        to left,
+                        $primeBlueColor,
+                        $primeOrangeColor
+                     );
+                     transition: $timing;
+                  }
+
+                  letter-spacing: 0.5px;
+                  background-image: linear-gradient(
+                     to right,
+                     $primeBlueColor,
+                     $primeOrangeColor
+                  );
+                  background-clip: text;
+                  color: transparent;
+               }
+            }
+         }
+      }
+   }
+
+   /* Pad Portrait */
+   @media (max-width: 1200px) and (min-width: 992px) {
+      nav {
+         @include size(100%, 100%);
+
+         display: flex;
+         justify-content: space-around;
+         align-items: center;
+
+         .left {
+            @include size(4rem, 100%);
+
+            background: url("../images/aks-logo.png");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+         }
+
+         .right {
+            button {
+               $timing: 3s;
+               position: relative;
+               word-spacing: -2px;
+               border: none;
+               background-color: transparent;
+               margin: 0 10px;
+               font-size: 16px;
+               transition: $timing;
+
+               &::after {
+                  width: 0%;
+                  height: 2px;
+                  content: "";
+                  position: absolute;
+                  bottom: -5px;
+                  border-radius: 50px;
+                  left: 0;
+                  transition: $timing;
+               }
+
+               &.active {
+                  transition: $timing;
+
+                  &::after {
+                     width: 100%;
+                     background: linear-gradient(
+                        to left,
+                        $primeBlueColor,
+                        $primeOrangeColor
+                     );
+                     transition: $timing;
+                  }
+
+                  letter-spacing: 0.5px;
+                  background-image: linear-gradient(
+                     to right,
+                     $primeBlueColor,
+                     $primeOrangeColor
+                  );
+                  background-clip: text;
+                  color: transparent;
+               }
+            }
+         }
+      }
+   }
+
+   /* Tablet Portrait */
+   @media (max-width: 991px) and (min-width: 768px) {
+      nav {
+         @include size(100%, 100%);
+
+         display: flex;
+         justify-content: space-around;
+         align-items: center;
+
+         .left {
+            @include size(4rem, 100%);
+
+            background: url("../images/aks-logo.png");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+         }
+
+         .right {
+            button {
+               $timing: 3s;
+               position: relative;
+               word-spacing: -2px;
+               border: none;
+               background-color: transparent;
+               margin: 0 10px;
+               font-size: 16px;
+               transition: $timing;
+
+               &::after {
+                  width: 0%;
+                  height: 2px;
+                  content: "";
+                  position: absolute;
+                  bottom: -5px;
+                  border-radius: 50px;
+                  left: 0;
+                  transition: $timing;
+               }
+
+               &.active {
+                  transition: $timing;
+
+                  &::after {
+                     width: 100%;
+                     background: linear-gradient(
+                        to left,
+                        $primeBlueColor,
+                        $primeOrangeColor
+                     );
+                     transition: $timing;
+                  }
+
+                  letter-spacing: 0.5px;
+                  background-image: linear-gradient(
+                     to right,
+                     $primeBlueColor,
+                     $primeOrangeColor
+                  );
+                  background-clip: text;
+                  color: transparent;
+               }
+            }
+         }
+
+         .mobile {
+            display: none;
+         }
+      }
+   }
+
+   /* Mobile Portrait */
+   @media (max-width: 767px) {
+      nav {
+         @include size(100%, 100%);
+
+         display: flex;
+         justify-content: space-around;
+         align-items: center;
+         background-color: white;
+         box-shadow: 0 0 5px rgba($color: #000000, $alpha: 0.2);
+
+         .left {
+            @include size(4rem, 100%);
+
+            background: url("../images/aks-logo.png");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+         }
+
+         .mobile {
+            width: 24px;
+            aspect-ratio: 1/1;
+            display: block;
+
+            background: url("../images/aks-menu-bar.png");
+            background-size: contain;
+
+            &.active {
+               background: url("../images/aks-x.png");
+               background-size: contain;
+            }
+         }
+
+         .right {
+            @include size(100%, 5rem);
+            position: absolute;
+            top: 0;
+            opacity: 0;
+            transition: 1s;
+
+            &.active {
+               top: 5rem;
+               opacity: 1;
+               transition: 1s;
+            }
+
+            box-shadow: 0 0 6px rgba($color: #000000, $alpha: 0.2);
+            background-color: rgba($color: #fff, $alpha: 0.9);
+            z-index: -1;
+            backdrop-filter: blur(5px);
+            perspective: 200px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            button {
+               $timing: 3s;
+               position: relative;
+               word-spacing: -2px;
+               border: none;
+               background-color: transparent;
+               margin: 0 10px;
+               font-size: 14px;
+               transition: $timing;
+
+               &::after {
+                  width: 0%;
+                  height: 2px;
+                  content: "";
+                  position: absolute;
+                  bottom: -5px;
+                  border-radius: 50px;
+                  left: 0;
+                  transition: $timing;
+               }
+
+               &.active {
+                  transition: $timing;
+
+                  &::after {
+                     width: 100%;
+                     background: linear-gradient(
+                        to left,
+                        $primeBlueColor,
+                        $primeOrangeColor
+                     );
+                     transition: $timing;
+                  }
+
+                  letter-spacing: 0.5px;
+                  background-image: linear-gradient(
+                     to right,
+                     $primeBlueColor,
+                     $primeOrangeColor
+                  );
+                  background-clip: text;
+                  color: transparent;
+               }
+            }
+         }
+      }
+   }
+}
+
+section {
+   position: relative;
+   padding: 30px auto;
+   scroll-snap-align: start;
+
+   // Intro
+   &#introduction {
+      background-color: white;
+      /* Large Screens */
+      @media (min-width: 1400px) {
+         @include size(100%, 36rem);
+
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+         scale: 0.8; ////////////////////////
+
+         p {
+            width: 60%; ///////////////////////////
+            text-align: center;
+         }
+         span {
+            &:nth-child(odd) {
+               color: rgb(216, 102, 45);
+            }
+            &:nth-child(even) {
+               color: rgb(56, 45, 216);
+            }
+         }
+         img {
+            width: 180px;
+            aspect-ratio: 1/1;
+            object-fit: contain;
+         }
+         div {
+            &#introduction-loading-box {
+               margin-top: 40px; /////////////////////////
+               width: 30%;
+               height: 4px;
+               border-radius: 40px;
+               background-color: gainsboro;
+               overflow: hidden;
+
+               #introduction-loading-bar {
+                  @include size(10%, 100%);
+                  border-radius: inherit;
+                  background-color: gray;
+               }
+            }
+         }
+      }
+
+      /* Desktop and Laptop */
+      @media (min-width: 1200px) and (max-width: 1399px) {
+         @include size(100%, 36rem);
+
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+         scale: 0.8; ////////////////////////
+
+         p {
+            width: 70%; ///////////////////////////
+            text-align: center;
+         }
+         span {
+            &:nth-child(odd) {
+               color: rgb(216, 102, 45);
+            }
+            &:nth-child(even) {
+               color: rgb(56, 45, 216);
+            }
+         }
+         img {
+            width: 180px;
+            aspect-ratio: 1/1;
+            object-fit: contain;
+         }
+         div {
+            &#introduction-loading-box {
+               margin-top: 45px; /////////////////////////
+               width: 30%;
+               height: 4px;
+               border-radius: 40px;
+               background-color: gainsboro;
+               overflow: hidden;
+
+               #introduction-loading-bar {
+                  @include size(10%, 100%);
+                  border-radius: inherit;
+                  background-color: gray;
+               }
+            }
+         }
+      }
+
+      /* Pad Portrait */
+      @media (max-width: 1200px) and (min-width: 992px) {
+         @include size(100%, 36rem);
+
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+         scale: 0.7; ////////////////////////
+
+         p {
+            width: 84%; ///////////////////////////
+            text-align: center;
+         }
+         span {
+            &:nth-child(odd) {
+               color: rgb(216, 102, 45);
+            }
+            &:nth-child(even) {
+               color: rgb(56, 45, 216);
+            }
+         }
+         img {
+            width: 180px;
+            aspect-ratio: 1/1;
+            object-fit: contain;
+         }
+         div {
+            &#introduction-loading-box {
+               margin-top: 45px; /////////////////////////
+               width: 50%; /////////////////////
+               height: 4px;
+               border-radius: 40px;
+               background-color: gainsboro;
+               overflow: hidden;
+
+               #introduction-loading-bar {
+                  @include size(10%, 100%);
+                  border-radius: inherit;
+                  background-color: gray;
+               }
+            }
+         }
+      }
+
+      /* Tablet Portrait */
+      @media (max-width: 991px) and (min-width: 768px) {
+         @include size(100%, 36rem);
+
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+         scale: 0.65; ////////////////////////
+
+         p {
+            width: 85%; ///////////////////////////
+            text-align: center;
+         }
+         span {
+            &:nth-child(odd) {
+               color: rgb(216, 102, 45);
+            }
+            &:nth-child(even) {
+               color: rgb(56, 45, 216);
+            }
+         }
+         img {
+            width: 180px;
+            aspect-ratio: 1/1;
+            object-fit: contain;
+         }
+         div {
+            &#introduction-loading-box {
+               margin-top: 45px; /////////////////////////
+               width: 50%; /////////////////////
+               height: 4px;
+               border-radius: 40px;
+               background-color: gainsboro;
+               overflow: hidden;
+
+               #introduction-loading-bar {
+                  @include size(10%, 100%);
+                  border-radius: inherit;
+                  background-color: gray;
+               }
+            }
+         }
+      }
+
+      /* Mobile Portrait */
+      @media (max-width: 767px) {
+         @include size(100%, 36rem);
+
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+         scale: 0.8; ////////////////////////
+
+         p {
+            width: 100%; ///////////////////////////
+            text-align: center;
+
+            word-spacing: -2px; ////////
+            line-height: 1.5; ////////////////////
+         }
+         span {
+            &:nth-child(odd) {
+               color: rgb(216, 102, 45);
+            }
+            &:nth-child(even) {
+               color: rgb(56, 45, 216);
+            }
+         }
+         img {
+            width: 180px;
+            aspect-ratio: 1/1;
+            object-fit: contain;
+         }
+         div {
+            &#introduction-loading-box {
+               margin-top: 28px; /////////////////////////
+               width: 50%; /////////////////////
+               height: 4px;
+               border-radius: 40px;
+               background-color: gainsboro;
+               overflow: hidden;
+
+               #introduction-loading-bar {
+                  @include size(10%, 100%);
+                  border-radius: inherit;
+                  background-color: gray;
+               }
+            }
+         }
+      }
+   }
+
+   // Profile
+   &#profile {
+      @include size(100%, fit-content);
+      background: $primeBlueColor;
+      filter: saturate(1.4);
+      color: whitesmoke;
+      overflow: hidden;
+
+      .wrapper .left button {
+         cursor: pointer;
+
+         &:hover {
+            background-color: #000070;
+         }
+         &:active {
+            @include activeState(black);
+         }
+      }
+
+      .wrapper {
+         /* Large Screens */
+         @media (min-width: 1400px) {
+            @include size(100%, 80vh);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 0 60px; ///////////////
+            scale: 0.8;
+
+            .left {
+               scale: 0.9; ////
+
+               p {
+                  margin-bottom: 20px;
+                  line-height: 1.4;
+                  color: white;
+               }
+               button {
+                  border: none;
+                  font-size: 40px; ///////
+                  background-color: $brownColor;
+                  color: whitesmoke;
+                  padding: 20px 40px;
+                  border-radius: 10px;
+                  box-shadow: 0 0 20px rgba($color: #fff, $alpha: 0.1);
+               }
+            }
+
+            .right {
+               position: relative;
+               @include size(50vw, 100%); ///////////
+               .image1 {
+                  position: absolute;
+                  z-index: 1;
+                  right: 3vw;
+                  bottom: -15vh;
+               }
+               .image2 {
+                  position: absolute;
+                  opacity: 0.4;
+                  height: 800px;
+                  right: -20vw;
+                  bottom: -10vh;
+               }
+            }
+         }
+
+         /* Desktop and Laptop */
+         @media (min-width: 1200px) and (max-width: 1399px) {
+            @include size(100%, 40rem);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 0 0px; ///////////////
+            scale: 0.8;
+
+            .left {
+               scale: 0.9; ////
+
+               p {
+                  margin-bottom: 20px;
+                  line-height: 1.4;
+                  color: white;
+               }
+               button {
+                  border: none;
+                  font-size: 40px; ///////
+                  background-color: $brownColor;
+                  color: whitesmoke;
+                  padding: 20px 40px;
+                  border-radius: 10px;
+               }
+            }
+
+            .right {
+               position: relative;
+               @include size(50vw, 100%); ///////////
+               .image1 {
+                  position: absolute;
+                  z-index: 1;
+                  right: 3vw;
+                  bottom: -7rem;
+               }
+               .image2 {
+                  position: absolute;
+                  opacity: 0.4;
+                  height: 800px;
+                  right: -20vw;
+                  bottom: -7rem;
+               }
+            }
+         }
+
+         /* Pad Portrait */
+         @media (max-width: 1200px) and (min-width: 992px) {
+            @include size(100%, 40rem);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 0 0px; ///////////////
+            scale: 0.8;
+
+            .left {
+               scale: 0.8; ////
+
+               p {
+                  margin-bottom: 20px;
+                  line-height: 1.4;
+                  color: white;
+               }
+               button {
+                  border: none;
+                  font-size: 40px; ///////
+                  background-color: $brownColor;
+                  color: whitesmoke;
+                  padding: 20px 40px;
+                  border-radius: 10px;
+               }
+            }
+
+            .right {
+               @include size(50vw, 40rem); ///////////
+
+               position: relative;
+               scale: 0.8;
+
+               .image1 {
+                  position: absolute;
+                  z-index: 1;
+                  right: 3vw;
+                  bottom: -13rem;
+               }
+               .image2 {
+                  position: absolute;
+                  opacity: 0.4;
+                  height: 800px;
+                  right: -22vw;
+                  bottom: -13rem;
+               }
+            }
+         }
+
+         /* Tablet Portrait */
+         @media (max-width: 991px) and (min-width: 768px) {
+            @include size(100%, 28rem);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 0 0px; ///////////////
+            scale: 0.8;
+
+            .left {
+               scale: 0.8; ////
+               text-align: center;
+
+               h1 {
+                  font-size: 60px;
+               }
+               p {
+                  margin-bottom: 20px;
+                  padding: 0 10px; //////////
+                  line-height: 1.4;
+                  color: white;
+               }
+               button {
+                  border: none;
+                  font-size: 40px; ///////
+                  background-color: $brownColor;
+                  color: whitesmoke;
+                  padding: 20px 40px;
+                  border-radius: 10px;
+               }
+            }
+
+            .right {
+               @include size(50vw, 100%); ///////////
+               position: absolute;
+               z-index: -1;
+               scale: 0.8;
+
+               .image1 {
+                  position: absolute;
+                  z-index: 1;
+                  right: 3vw;
+                  bottom: -15vh;
+                  display: none;
+               }
+               .image2 {
+                  position: absolute;
+                  // opacity: 0.2;
+                  width: 500px;
+                  right: -70vw;
+                  bottom: -9rem;
+                  mask-image: linear-gradient(to left, black, transparent);
+               }
+            }
+         }
+
+         /* Mobile Portrait */
+         @media (max-width: 767px) {
+            @include size(100%, 40rem);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 0 0px; ///////////////
+            scale: 0.8;
+
+            .left {
+               scale: 0.9; ////
+               text-align: center;
+
+               h1 {
+                  font-size: 50px;
+                  margin-bottom: 15px;
+               }
+               p {
+                  margin-bottom: 20px;
+                  // padding: 0 10px; //////////
+                  line-height: 1.6;
+                  color: white;
+               }
+               button {
+                  border: none;
+                  font-size: 30px; ///////
+                  background-color: $brownColor;
+                  color: whitesmoke;
+                  padding: 20px 40px;
+                  border-radius: 10px;
+               }
+            }
+
+            .right {
+               @include size(50vw, 100%); ///////////
+               position: absolute;
+               z-index: -1;
+               scale: 0.8;
+
+               .image1 {
+                  position: absolute;
+                  z-index: 1;
+                  right: 3vw;
+                  bottom: -15vh;
+                  display: none;
+               }
+               .image2 {
+                  position: absolute;
+                  opacity: 0.2;
+                  width: 500px;
+                  right: -70vw;
+                  bottom: -15rem;
+                  mask-image: linear-gradient(to left, black, transparent);
+               }
+            }
+         }
+      }
+   }
+
+   // Experience
+   &#experience {
+      @include size(100%, fit-content);
+      background-color: white;
+      padding: 60px 30px;
+
+      .wrapper .left .card {
+         * {
+            cursor: pointer;
+         }
+         &:hover {
+            scale: 1.04;
+         }
+         &:active {
+            @include activeState(white);
+         }
+      }
+
+      .wrapper {
+         /* Large Screens */
+         @media (min-width: 1400px) {
+            @include size(100%, fit-content);
+
+            scale: 0.8; ////////////
+            display: grid;
+            gap: 20px;
+            grid-template-columns: 50% 50%;
+            grid-template-rows: 12rem 30rem; //// 1st row modify
+            grid-template-areas:
+               "t t"
+               "l r";
+
+            #experience-title {
+               grid-area: t;
+               height: fit-content;
+               text-align: center;
+               h2 {
+                  text-transform: uppercase;
+                  font-size: 40px;
+                  color: darkgrey;
+               }
+               // background-color: saddlebrown
+            }
+            .left {
+               position: relative;
+               grid-area: l;
+               padding: 30px 30px;
+               overflow: hidden;
+               overflow-y: scroll;
+
+               .card {
+                  position: relative;
+                  display: flex;
+                  gap: 20px;
+                  width: 100%;
+                  height: 8.4rem;
+                  padding: 14px 40px; //////
+                  border-radius: 20px;
+                  box-shadow: 0 0 20px rgba($color: #000000, $alpha: 0.1);
+                  margin-bottom: 20px;
+                  cursor: pointer;
+
+                  &::before {
+                     @include size(10px, 60px);
+
+                     content: "";
+                     position: absolute;
+                     top: 50%;
+                     left: 10px;
+                     transform: translateY(-50%);
+                     border-radius: 40px;
+                     background-color: rgb(228, 228, 228);
+                  }
+
+                  .card-left {
+                     @include size(200px, 100%);
+                     background-color: antiquewhite;
+                     overflow: hidden;
+                     border-radius: inherit;
+
+                     img {
+                        @include size(100%, 100%);
+                        object-fit: cover;
+                     }
+                  }
+                  .card-right {
+                     display: flex;
+                     flex-direction: column;
+                     justify-content: center;
+                     align-items: flex-start;
+
+                     width: 100%;
+
+                     h2 {
+                        font-size: 16px;
+                        width: fit-content;
+                        padding: 10px 20px;
+                        color: white;
+                        border-radius: 50px;
+                        text-transform: uppercase;
+
+                        &.apartement {
+                           background-color: rgb(216, 102, 45);
+                        }
+                        &.residence {
+                           background-color: blue;
+                        }
+                     }
+                     p {
+                        word-spacing: 0px;
+                        font-size: 36px;
+                     }
+                  }
+               }
+            }
+            .right {
+               grid-area: r;
+               position: relative;
+               border-radius: 20px;
+               box-shadow: 0 0 20px rgba($color: #000000, $alpha: 0.1);
+               background: url("../images/aks-experience-cimanggis.png");
+               background-size: cover;
+               background-repeat: no-repeat;
+               overflow: hidden;
+
+               .info {
+                  @include size(100%, 10rem);
+                  position: absolute;
+                  bottom: 0;
+                  background-color: rgba($color: #000000, $alpha: 0.7);
+                  display: flex;
+                  justify-content: center;
+
+                  .info-left,
+                  .info-center,
+                  .info-right {
+                     width: 30%; //////
+                     display: flex;
+                     flex-direction: column;
+                     justify-content: center;
+                     align-items: center;
+                     gap: 10px;
+                  }
+                  .info-left {
+                     text-align: center;
+                     h2 {
+                        color: whitesmoke;
+                        line-height: 1;
+                        font-size: 2rem;
+                     }
+                  }
+                  .info-center {
+                     text-align: center;
+                     h2 {
+                        color: white;
+                        line-height: 1;
+                        font-size: 2.4rem;
+                     }
+                     p {
+                        text-transform: uppercase;
+                        color: greenyellow;
+                        font-size: 40px;
+                        font-weight: 800;
+                     }
+                  }
+                  .info-right {
+                     p {
+                        text-transform: uppercase;
+                        font-size: 30px;
+                        font-weight: 800;
+                     }
+                  }
+               }
+            }
+         }
+
+         /* Desktop and Laptop */
+         @media (min-width: 1200px) and (max-width: 1399px) {
+            @include size(100%, fit-content);
+
+            scale: 0.8; ////////////
+            display: grid;
+            gap: 20px;
+            grid-template-columns: 50% 50%;
+            grid-template-rows: 12rem 30rem; //// 1st row modify
+            grid-template-areas:
+               "t t"
+               "l r";
+
+            #experience-title {
+               grid-area: t;
+               height: fit-content;
+               text-align: center;
+               h2 {
+                  text-transform: uppercase;
+                  font-size: 40px;
+                  color: darkgrey;
+               }
+               // background-color: saddlebrown
+            }
+            .left {
+               position: relative;
+               grid-area: l;
+               padding: 30px 30px;
+               overflow: hidden;
+               overflow-y: scroll;
+
+               .card {
+                  position: relative;
+                  display: flex;
+                  gap: 20px;
+                  width: 100%;
+                  height: 8.4rem;
+                  padding: 14px 40px; //////
+                  border-radius: 20px;
+                  box-shadow: 0 0 20px rgba($color: #000000, $alpha: 0.1);
+                  margin-bottom: 20px;
+                  cursor: pointer;
+
+                  &::before {
+                     @include size(10px, 60px);
+
+                     content: "";
+                     position: absolute;
+                     top: 50%;
+                     left: 10px;
+                     transform: translateY(-50%);
+                     border-radius: 40px;
+                     background-color: rgb(228, 228, 228);
+                  }
+
+                  .card-left {
+                     @include size(200px, 100%);
+                     background-color: antiquewhite;
+                     overflow: hidden;
+                     border-radius: inherit;
+
+                     img {
+                        @include size(100%, 100%);
+                        object-fit: cover;
+                     }
+                  }
+                  .card-right {
+                     display: flex;
+                     flex-direction: column;
+                     justify-content: center;
+                     align-items: flex-start;
+
+                     width: 100%;
+
+                     h2 {
+                        font-size: 14px; /////////
+                        width: fit-content;
+                        padding: 10px 20px;
+                        color: white;
+                        border-radius: 50px;
+                        text-transform: uppercase;
+
+                        &.apartement {
+                           background-color: rgb(216, 102, 45);
+                        }
+                        &.residence {
+                           background-color: blue;
+                        }
+                     }
+                     p {
+                        word-spacing: 0px;
+                        font-size: 30px; //////////
+                     }
+                  }
+               }
+            }
+            .right {
+               grid-area: r;
+               position: relative;
+               border-radius: 20px;
+               box-shadow: 0 0 20px rgba($color: #000000, $alpha: 0.1);
+               background: url("../images/aks-experience-cimanggis.png");
+               background-size: cover;
+               background-repeat: no-repeat;
+               overflow: hidden;
+
+               .info {
+                  @include size(100%, 10rem);
+                  position: absolute;
+                  bottom: 0;
+                  background-color: rgba($color: #000000, $alpha: 0.7);
+                  display: flex;
+                  justify-content: center;
+
+                  .info-left,
+                  .info-center,
+                  .info-right {
+                     width: 30%; //////
+                     display: flex;
+                     flex-direction: column;
+                     justify-content: center;
+                     align-items: center;
+                     gap: 10px;
+                  }
+                  .info-left {
+                     text-align: center;
+                     h2 {
+                        color: whitesmoke;
+                        line-height: 1;
+                        font-size: 1.6rem; ////
+                     }
+                  }
+                  .info-center {
+                     text-align: center;
+                     h2 {
+                        color: white;
+                        line-height: 1;
+                        font-size: 2rem; ///
+                     }
+                     p {
+                        text-transform: uppercase;
+                        color: greenyellow;
+                        font-size: 36px; ///
+                        font-weight: 800;
+                     }
+                  }
+                  .info-right {
+                     p {
+                        text-transform: uppercase;
+                        font-size: 24px; ////
+                        font-weight: 800;
+                     }
+                  }
+               }
+            }
+         }
+
+         /* Pad Portrait */
+         @media (max-width: 1200px) and (min-width: 992px) {
+            @include size(100%, fit-content);
+
+            scale: 0.7; ////////////
+            display: grid;
+            gap: 20px;
+            grid-template-columns: 100%;
+            grid-template-rows: 10rem 35rem 30rem; //// 1st row modify
+            grid-template-areas:
+               "t t"
+               "r r"
+               "l l";
+
+            #experience-title {
+               grid-area: t;
+               height: fit-content;
+               text-align: center;
+               h2 {
+                  text-transform: uppercase;
+                  font-size: 30px;
+                  color: darkgrey;
+               }
+               // background-color: saddlebrown
+            }
+            .left {
+               position: relative;
+               grid-area: l;
+               padding: 30px 30px;
+               display: flex;
+               gap: 20px;
+               height: fit-content;
+               overflow: hidden;
+               overflow-x: scroll;
+
+               .card {
+                  position: relative;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 20px;
+                  width: 30vw;
+                  height: 24rem;
+                  padding: 14px 40px; //////
+                  border-radius: 20px;
+                  box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.1);
+                  margin-bottom: 20px;
+                  cursor: pointer;
+
+                  &::before {
+                     @include size(100px, 10px);
+
+                     content: "";
+                     position: absolute;
+                     top: 20px;
+                     left: 50%;
+                     transform: translateX(-50%);
+                     border-radius: 40px;
+                     background-color: rgb(228, 228, 228);
+                  }
+
+                  .card-left {
+                     @include size(200px, 100%);
+                     background-color: antiquewhite;
+                     overflow: hidden;
+                     border-radius: inherit;
+                     margin-top: 40px;
+
+                     img {
+                        @include size(100%, 100%);
+                        object-fit: cover;
+                     }
+                  }
+                  .card-right {
+                     display: flex;
+                     flex-direction: column;
+                     justify-content: center;
+                     align-items: flex-start;
+                     text-align: center;
+
+                     width: 100%;
+
+                     h2 {
+                        align-self: center;
+                        font-size: 14px; /////////
+                        width: fit-content;
+                        padding: 10px 20px;
+                        color: white;
+                        border-radius: 50px;
+                        text-transform: uppercase;
+
+                        &.apartement {
+                           background-color: rgb(216, 102, 45);
+                        }
+                        &.residence {
+                           background-color: blue;
+                        }
+                     }
+                     p {
+                        margin-top: 10px;
+                        font-weight: 100;
+                        word-spacing: 0px;
+                        font-size: 30px; //////////
+                        line-height: 1;
+                        padding: 0 10px;
+                     }
+                  }
+               }
+            }
+            .right {
+               grid-area: r;
+               position: relative;
+               border-radius: 20px;
+               box-shadow: 0 0 20px rgba($color: #000000, $alpha: 0.1);
+               background: url("../images/aks-experience-cimanggis.png");
+               background-size: cover;
+               background-repeat: no-repeat;
+               overflow: hidden;
+
+               .info {
+                  @include size(100%, 10rem);
+                  position: absolute;
+                  bottom: 0;
+                  background-color: rgba($color: #000000, $alpha: 0.7);
+                  display: flex;
+                  justify-content: center;
+
+                  .info-left,
+                  .info-center,
+                  .info-right {
+                     width: 30%; //////
+                     display: flex;
+                     flex-direction: column;
+                     justify-content: center;
+                     align-items: center;
+                     gap: 10px;
+                  }
+                  .info-left {
+                     text-align: center;
+                     h2 {
+                        color: whitesmoke;
+                        line-height: 1;
+                        font-size: 2rem; ////
+                     }
+                  }
+                  .info-center {
+                     text-align: center;
+                     h2 {
+                        color: white;
+                        line-height: 1;
+                        font-size: 2.4rem; ///
+                     }
+                     p {
+                        text-transform: uppercase;
+                        color: greenyellow;
+                        font-size: 40px; ///
+                        font-weight: 800;
+                     }
+                  }
+                  .info-right {
+                     p {
+                        text-transform: uppercase;
+                        font-size: 36px; ////
+                        font-weight: 800;
+                     }
+                  }
+               }
+            }
+         }
+
+         /* Tablet Portrait */
+         @media (max-width: 991px) and (min-width: 768px) {
+            @include size(100%, fit-content);
+
+            scale: 0.7; ////////////
+            display: grid;
+            gap: 20px;
+            grid-template-columns: 100%;
+            grid-template-rows: 10rem 35rem 30rem; //// 1st row modify
+            grid-template-areas:
+               "t t"
+               "r r"
+               "l l";
+
+            #experience-title {
+               grid-area: t;
+               height: fit-content;
+               text-align: center;
+               h2 {
+                  text-transform: uppercase;
+                  font-size: 30px;
+                  color: darkgrey;
+               }
+               h1 {
+                  font-size: 60px;
+               }
+               // background-color: saddlebrown
+            }
+            .left {
+               position: relative;
+               grid-area: l;
+               padding: 30px 30px;
+               display: grid;
+               grid-template-columns: repeat(4, 30rem);
+               gap: 20px;
+               height: fit-content;
+               overflow: hidden;
+               overflow-x: scroll;
+
+               .card {
+                  position: relative;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 20px;
+                  width: 100%;
+                  height: 24rem;
+                  padding: 14px 40px; //////
+                  border-radius: 20px;
+                  box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.1);
+                  margin-bottom: 20px;
+                  cursor: pointer;
+
+                  &::before {
+                     @include size(100px, 10px);
+
+                     content: "";
+                     position: absolute;
+                     top: 20px;
+                     left: 50%;
+                     transform: translateX(-50%);
+                     border-radius: 40px;
+                     background-color: rgb(228, 228, 228);
+                  }
+
+                  .card-left {
+                     @include size(100%, 100%);
+                     background-color: antiquewhite;
+                     overflow: hidden;
+                     border-radius: inherit;
+                     margin-top: 40px;
+
+                     img {
+                        @include size(100%, 100%);
+                        object-fit: cover;
+                     }
+                  }
+                  .card-right {
+                     display: flex;
+                     flex-direction: column;
+                     justify-content: center;
+                     align-items: flex-start;
+                     text-align: center;
+
+                     width: 100%;
+
+                     h2 {
+                        align-self: center;
+                        font-size: 14px; /////////
+                        width: fit-content;
+                        padding: 10px 20px;
+                        color: white;
+                        border-radius: 50px;
+                        text-transform: uppercase;
+                     }
+                     p {
+                        align-self: center;
+                        margin-top: 10px;
+                        margin-bottom: 10px;
+                        font-weight: 100;
+                        word-spacing: 0px;
+                        font-size: 30px; //////////
+                        line-height: 1;
+                        padding: 0 10px;
+                     }
+                  }
+               }
+            }
+            .right {
+               grid-area: r;
+               position: relative;
+               border-radius: 20px;
+               box-shadow: 0 0 20px rgba($color: #000000, $alpha: 0.1);
+               background: url("../images/aks-experience-cimanggis.png");
+               background-size: cover;
+               background-repeat: no-repeat;
+               overflow: hidden;
+
+               .info {
+                  @include size(100%, 10rem);
+                  position: absolute;
+                  bottom: 0;
+                  background-color: rgba($color: #000000, $alpha: 0.7);
+                  display: flex;
+                  justify-content: center;
+
+                  .info-left,
+                  .info-center,
+                  .info-right {
+                     width: 30%; //////
+                     display: flex;
+                     flex-direction: column;
+                     justify-content: center;
+                     align-items: center;
+                     gap: 10px;
+                  }
+                  .info-left {
+                     text-align: center;
+                     h2 {
+                        color: whitesmoke;
+                        line-height: 1;
+                        font-size: 2rem; ////
+                     }
+                  }
+                  .info-center {
+                     text-align: center;
+                     h2 {
+                        color: white;
+                        line-height: 1;
+                        font-size: 2.4rem; ///
+                     }
+                     p {
+                        text-transform: uppercase;
+                        color: greenyellow;
+                        font-size: 40px; ///
+                        font-weight: 800;
+                     }
+                  }
+                  .info-right {
+                     p {
+                        text-transform: uppercase;
+                        font-size: 36px; ////
+                        font-weight: 800;
+                     }
+                  }
+               }
+            }
+         }
+
+         /* Mobile Portrait */
+         @media (max-width: 767px) {
+            @include size(100%, fit-content);
+
+            scale: 1; ////////////
+
+            #experience-title {
+               height: fit-content;
+               text-align: center;
+               h2 {
+                  text-transform: uppercase;
+                  font-size: 24px;
+                  color: darkgrey;
+               }
+               h1 {
+                  font-size: 38px;
+               }
+               // background-color: saddlebrown
+            }
+            .left {
+               position: relative;
+               padding: 30px 30px;
+               display: grid;
+               grid-template-columns: repeat(4, 16rem);
+               gap: 20px;
+               height: fit-content;
+               overflow: hidden;
+               overflow-x: scroll;
+
+               .card {
+                  position: relative;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 20px;
+                  width: 100%;
+                  height: 24rem;
+                  padding: 14px 40px; //////
+                  border-radius: 20px;
+                  box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.1);
+                  margin-bottom: 20px;
+                  cursor: pointer;
+
+                  &::before {
+                     @include size(100px, 10px);
+
+                     content: "";
+                     position: absolute;
+                     top: 20px;
+                     left: 50%;
+                     transform: translateX(-50%);
+                     border-radius: 40px;
+                     background-color: rgb(228, 228, 228);
+                  }
+
+                  .card-left {
+                     @include size(100%, 100%);
+                     background-color: antiquewhite;
+                     overflow: hidden;
+                     border-radius: inherit;
+                     margin-top: 40px;
+
+                     img {
+                        @include size(100%, 100%);
+                        object-fit: cover;
+                     }
+                  }
+                  .card-right {
+                     display: flex;
+                     flex-direction: column;
+                     justify-content: center;
+                     align-items: flex-start;
+                     text-align: center;
+
+                     width: 100%;
+
+                     h2 {
+                        align-self: center;
+                        font-size: 14px; /////////
+                        width: fit-content;
+                        padding: 10px 20px;
+                        color: white;
+                        border-radius: 50px;
+                        text-transform: uppercase;
+
+                        &.apartement {
+                           background-color: rgb(216, 102, 45);
+                        }
+                        &.residence {
+                           background-color: blue;
+                        }
+                     }
+                     p {
+                        align-self: center;
+                        margin-top: 10px;
+                        font-weight: 100;
+                        word-spacing: 0px;
+                        font-size: 30px; //////////
+                        line-height: 1;
+                        padding: 0 10px;
+                     }
+                  }
+               }
+            }
+            .right {
+               grid-area: r;
+               display: none;
+               position: relative;
+               width: 100%;
+               border-radius: 20px;
+               box-shadow: 0 0 20px rgba($color: #000000, $alpha: 0.1);
+               background: url("../images/aks-experience-cimanggis.png");
+               background-size: contain;
+               background-repeat: no-repeat;
+               overflow: hidden;
+
+               .info {
+                  @include size(100%, 10rem);
+                  position: absolute;
+                  bottom: 0;
+                  background-color: rgba($color: #000000, $alpha: 0.7);
+                  display: flex;
+                  justify-content: center;
+
+                  .info-left,
+                  .info-center,
+                  .info-right {
+                     width: 30%; //////
+                     display: flex;
+                     flex-direction: column;
+                     justify-content: center;
+                     align-items: center;
+                     gap: 10px;
+                  }
+                  .info-left {
+                     text-align: center;
+                     h2 {
+                        color: whitesmoke;
+                        line-height: 1;
+                        font-size: 2rem; ////
+                     }
+                  }
+                  .info-center {
+                     text-align: center;
+                     h2 {
+                        color: white;
+                        line-height: 1;
+                        font-size: 2.4rem; ///
+                     }
+                     p {
+                        text-transform: uppercase;
+                        color: greenyellow;
+                        font-size: 40px; ///
+                        font-weight: 800;
+                     }
+                  }
+                  .info-right {
+                     p {
+                        text-transform: uppercase;
+                        font-size: 36px; ////
+                        font-weight: 800;
+                     }
+                  }
+               }
+            }
+         }
+      }
+   }
+
+   // Service
+   &#service {
+      /* Large Screens */
+      @media (min-width: 1400px) {
+         @include size(100%, 40rem);
+         background-color: $primeOrangeColor;
+
+         .wrapper {
+            @include size(100%, 100%);
+
+            padding: 20px 40px;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            gap: 20px;
+
+            .left,
+            .right {
+               @include size(50%, 100%);
+            }
+            .left {
+               justify-content: center;
+               align-items: center;
+               display: flex;
+               .title {
+                  text-align: center;
+
+                  h2 {
+                     font-size: 30px;
+                     text-transform: uppercase;
+                     color: whitesmoke;
+                  }
+                  h1 {
+                     font-size: 50px;
+                     color: white;
+                  }
+               }
+            }
+            .right {
+               width: 70%;
+               display: flex;
+               flex-wrap: wrap;
+               justify-content: center;
+               align-items: center;
+               gap: 20px;
+               padding: 20px 20px;
+
+               .service-card {
+                  @include size(30%, 20rem);
+
+                  background-color: white;
+                  box-shadow: 0 0 20px rgba($color: #000000, $alpha: 0.2);
+                  border-radius: 10px;
+
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  overflow: hidden;
+
+                  .top,
+                  .bottom {
+                     display: flex;
+                     text-align: center;
+                     flex-direction: column;
+                     justify-content: center;
+                     align-items: center;
+                  }
+                  .top {
+                     height: 12rem;
+                     width: 100%;
+                     position: relative;
+                     box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.1);
+
+                     img {
+                        @include size(100%, 100%);
+                        object-fit: cover;
+                     }
+                     h2 {
+                        position: absolute;
+                        padding: 10px 20px;
+                        background-color: blue;
+                        color: white;
+                        word-spacing: 0px;
+                        letter-spacing: -0.5px;
+                        bottom: -20px; /////
+                        font-size: 15px; /////////
+                        border-radius: 20px;
+                        box-shadow: 0 0 20px rgba($color: #000000, $alpha: 0.2);
+                        width: 10rem;
+                     }
+                  }
+                  .bottom {
+                     @include size(100%, 100%);
+                     position: relative;
+                     top: 0.6rem;
+
+                     img {
+                        width: 4rem;
+                        aspect-ratio: 1/1;
+                        object-fit: cover;
+                        // scale: .28;
+                     }
+                  }
+               }
+            }
+         }
+      }
+
+      /* Desktop and Laptop */
+      @media (min-width: 1200px) and (max-width: 1399px) {
+         @include size(100%, 40rem);
+         background-color: $primeOrangeColor;
+
+         .wrapper {
+            @include size(100%, 100%);
+
+            scale: 0.9;
+            padding: 20px 40px;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            gap: 20px;
+
+            .left,
+            .right {
+               @include size(50%, 100%);
+            }
+            .left {
+               justify-content: center;
+               align-items: center;
+               display: flex;
+               .title {
+                  text-align: center;
+
+                  h2 {
+                     font-size: 30px;
+                     text-transform: uppercase;
+                     color: whitesmoke;
+                  }
+                  h1 {
+                     font-size: 50px;
+                     color: white;
+                  }
+               }
+            }
+            .right {
+               width: 70%;
+               display: flex;
+               flex-wrap: wrap;
+               justify-content: center;
+               align-items: center;
+               gap: 20px;
+               padding: 20px 20px;
+               overflow-y: scroll;
+
+               .service-card {
+                  @include size(40%, 20rem);
+
+                  background-color: white;
+                  box-shadow: 0 0 20px rgba($color: #000000, $alpha: 0.2);
+                  border-radius: 10px;
+
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  overflow: hidden;
+
+                  .top,
+                  .bottom {
+                     display: flex;
+                     text-align: center;
+                     flex-direction: column;
+                     justify-content: center;
+                     align-items: center;
+                  }
+                  .top {
+                     height: 12rem;
+                     width: 100%;
+                     position: relative;
+                     box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.1);
+
+                     img {
+                        @include size(100%, 100%);
+                        object-fit: cover;
+                     }
+                     h2 {
+                        position: absolute;
+                        padding: 10px 20px;
+                        background-color: blue;
+                        color: white;
+                        word-spacing: 0px;
+                        letter-spacing: -0.5px;
+                        bottom: -20px; /////
+                        font-size: 15px; /////////
+                        border-radius: 20px;
+                        box-shadow: 0 0 20px rgba($color: #000000, $alpha: 0.2);
+                        width: 10rem;
+                     }
+                  }
+                  .bottom {
+                     @include size(100%, 100%);
+                     position: relative;
+                     top: 0.6rem;
+
+                     img {
+                        width: 4rem;
+                        aspect-ratio: 1/1;
+                        object-fit: cover;
+                        // scale: .28;
+                     }
+                  }
+               }
+            }
+         }
+      }
+
+      /* Pad Portrait */
+      @media (max-width: 1200px) and (min-width: 992px) {
+         @include size(100%, 40rem);
+         background-color: $primeOrangeColor;
+
+         .wrapper {
+            @include size(100%, 100%);
+
+            scale: 0.9;
+            padding: 20px 40px;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            gap: 20px;
+
+            .left,
+            .right {
+               @include size(50%, 100%);
+            }
+            .left {
+               justify-content: center;
+               align-items: center;
+               display: flex;
+               .title {
+                  text-align: center;
+
+                  h2 {
+                     font-size: 30px;
+                     text-transform: uppercase;
+                     color: whitesmoke;
+                  }
+                  h1 {
+                     font-size: 50px;
+                     color: white;
+                  }
+               }
+            }
+            .right {
+               width: 50%;
+               display: flex;
+               flex-wrap: wrap;
+               justify-content: center;
+               align-items: center;
+               gap: 20px;
+               overflow-y: scroll;
+
+               .service-card {
+                  @include size(60%, 25rem); /////
+
+                  background-color: white;
+                  box-shadow: 0 0 20px rgba($color: #000000, $alpha: 0.2);
+                  border-radius: 10px;
+
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  overflow: hidden;
+
+                  .top,
+                  .bottom {
+                     display: flex;
+                     text-align: center;
+                     flex-direction: column;
+                     justify-content: center;
+                     align-items: center;
+                  }
+                  .top {
+                     height: 15rem; /////
+                     width: 100%;
+                     position: relative;
+                     box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.1);
+
+                     img {
+                        @include size(100%, 100%);
+                        object-fit: cover;
+                     }
+                     h2 {
+                        position: absolute;
+                        padding: 10px 20px;
+                        background-color: blue;
+                        color: white;
+                        word-spacing: 0px;
+                        letter-spacing: -0.5px;
+                        bottom: -20px; /////
+                        font-size: 20px; /////////
+                        border-radius: 20px;
+                        box-shadow: 0 0 20px rgba($color: #000000, $alpha: 0.2);
+                        width: 12rem;
+                     }
+                  }
+                  .bottom {
+                     @include size(100%, 100%);
+                     position: relative;
+                     top: 0.6rem;
+
+                     img {
+                        width: 5rem;
+                        aspect-ratio: 1/1;
+                        object-fit: cover;
+                        // scale: .28;
+                     }
+                  }
+               }
+            }
+         }
+      }
+
+      /* Tablet Portrait */
+      @media (max-width: 991px) and (min-width: 768px) {
+         @include size(100%, fit-content);
+         background-color: $primeOrangeColor;
+
+         .wrapper {
+            @include size(100%, fit-content);
+
+            scale: 0.9;
+            padding: 20px 40px;
+            gap: 20px;
+
+            .left,
+            .right {
+               @include size(100%, 100%);
+            }
+            .left {
+               justify-content: center;
+               align-items: center;
+               display: flex;
+               .title {
+                  text-align: center;
+
+                  h2 {
+                     font-size: 30px;
+                     text-transform: uppercase;
+                     color: whitesmoke;
+                  }
+                  h1 {
+                     font-size: 50px;
+                     color: white;
+                  }
+               }
+               margin-bottom: 20px;
+            }
+            .right {
+               display: flex;
+               justify-content: center;
+               align-items: center;
+               gap: 20px;
+
+               .service-card {
+                  @include size(60%, 25rem); /////
+
+                  background-color: white;
+                  box-shadow: 0 0 20px rgba($color: #000000, $alpha: 0.2);
+                  border-radius: 10px;
+
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  overflow: hidden;
+
+                  .top,
+                  .bottom {
+                     display: flex;
+                     text-align: center;
+                     flex-direction: column;
+                     justify-content: center;
+                     align-items: center;
+                  }
+                  .top {
+                     height: 14rem; /////
+                     width: 100%;
+                     position: relative;
+                     box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.1);
+
+                     img {
+                        @include size(100%, 100%);
+                        object-fit: cover;
+                     }
+                     h2 {
+                        position: absolute;
+                        padding: 10px 20px;
+                        background-color: blue;
+                        color: white;
+                        word-spacing: 0px;
+                        letter-spacing: -0.5px;
+                        bottom: -20px; /////
+                        font-size: 18px; /////////
+                        border-radius: 20px;
+                        box-shadow: 0 0 20px rgba($color: #000000, $alpha: 0.2);
+                        width: 12rem;
+                     }
+                  }
+                  .bottom {
+                     @include size(100%, 100%);
+                     position: relative;
+                     top: 0.6rem;
+
+                     img {
+                        width: 4rem;
+                        aspect-ratio: 1/1;
+                        object-fit: cover;
+                     }
+                  }
+               }
+            }
+         }
+      }
+
+      /* Mobile Portrait */
+      @media (max-width: 767px) {
+         @include size(100%, fit-content);
+         background-color: $primeOrangeColor;
+
+         .wrapper {
+            @include size(100%, fit-content);
+
+            scale: 0.9;
+            padding: 20px 40px;
+            gap: 20px;
+
+            .left {
+               justify-content: center;
+               align-items: center;
+               display: flex;
+               .title {
+                  text-align: center;
+
+                  h2 {
+                     font-size: 30px;
+                     text-transform: uppercase;
+                     color: whitesmoke;
+                  }
+                  h1 {
+                     font-size: 44px;
+                     color: white;
+                  }
+               }
+               margin-bottom: 20px;
+            }
+            .right {
+               @include size(100%, 80rem);
+               display: flex;
+               flex-direction: column;
+               justify-content: center;
+               align-items: center;
+               gap: 20px;
+
+               .service-card {
+                  @include size(100%, 25rem); /////
+
+                  background-color: white;
+                  box-shadow: 0 0 20px rgba($color: #000000, $alpha: 0.2);
+                  border-radius: 10px;
+
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  overflow: hidden;
+
+                  .top,
+                  .bottom {
+                     display: flex;
+                     text-align: center;
+                     flex-direction: column;
+                     justify-content: center;
+                     align-items: center;
+                  }
+                  .top {
+                     height: 16rem; /////
+                     width: 100%;
+                     position: relative;
+                     box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.1);
+
+                     img {
+                        @include size(100%, 100%);
+                        object-fit: cover;
+                     }
+                     h2 {
+                        position: absolute;
+                        padding: 10px 20px;
+                        background-color: blue;
+                        color: white;
+                        word-spacing: 0px;
+                        letter-spacing: -0.5px;
+                        bottom: -20px; /////
+                        font-size: 18px; /////////
+                        border-radius: 20px;
+                        box-shadow: 0 0 20px rgba($color: #000000, $alpha: 0.2);
+                        width: 12rem;
+                     }
+                  }
+                  .bottom {
+                     @include size(100%, 100%);
+                     position: relative;
+                     top: 0.6rem;
+
+                     img {
+                        width: 4rem;
+                        aspect-ratio: 1/1;
+                        object-fit: cover;
+                     }
+                  }
+               }
+            }
+         }
+      }
+   }
+
+   // Contact
+   &#contact {
+      @include size(100%, fit-content);
+
+      .wrapper .get-contact .contact-bar a {
+         cursor: pointer;
+         img {
+            cursor: pointer;
+         }
+
+         &:hover {
+            background-color: gainsboro;
+         }
+
+         &:active {
+            @include activeState(gray);
+         }
+      }
+
+      /* Large Screens */
+      @media (min-width: 1400px) {
+         .wrapper {
+            @include size(100%, 45rem);
+
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+
+            .desc {
+               scale: 0.8;
+               padding: 0 10rem;
+
+               h2 {
+                  color: gainsboro;
+                  font-size: 80px;
+                  margin-bottom: 10px;
+               }
+               p {
+                  color: rgb(66, 66, 66);
+               }
+            }
+
+            .get-contact {
+               p {
+                  text-transform: uppercase;
+                  font-size: 25px;
+                  color: gray;
+                  margin-bottom: 16px;
+               }
+               a {
+                  height: 6rem;
+                  display: inline-block;
+                  margin: 0 15px;
+                  background-color: whitesmoke;
+                  padding: 12px 12px;
+                  border-radius: 10px;
+
+                  img {
+                     @include size(100%, 100%);
+                  }
+               }
+            }
+         }
+      }
+
+      /* Desktop and Laptop */
+      @media (min-width: 1200px) and (max-width: 1399px) {
+         .wrapper {
+            @include size(100%, 45rem);
+
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+
+            .desc {
+               scale: 0.8;
+               padding: 0 10rem;
+
+               h2 {
+                  color: gainsboro;
+                  font-size: 80px;
+                  margin-bottom: 10px;
+               }
+               p {
+                  color: rgb(66, 66, 66);
+               }
+            }
+
+            .get-contact {
+               p {
+                  text-transform: uppercase;
+                  font-size: 25px;
+                  color: gray;
+                  margin-bottom: 16px;
+               }
+               a {
+                  height: 6rem;
+                  display: inline-block;
+                  margin: 0 15px;
+                  background-color: whitesmoke;
+                  padding: 12px 12px;
+                  border-radius: 10px;
+
+                  img {
+                     @include size(100%, 100%);
+                  }
+               }
+            }
+         }
+      }
+
+      /* Pad Portrait */
+      @media (max-width: 1200px) and (min-width: 992px) {
+         .wrapper {
+            @include size(100%, 45rem);
+
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+
+            .desc {
+               scale: 0.8;
+               padding: 0 5rem;
+
+               h2 {
+                  color: gainsboro;
+                  font-size: 80px;
+                  margin-bottom: 10px;
+               }
+               p {
+                  font-size: 40px;
+                  color: rgb(66, 66, 66);
+               }
+            }
+
+            .get-contact {
+               p {
+                  text-transform: uppercase;
+                  font-size: 25px; ////////////
+                  color: gray;
+                  margin-bottom: 16px;
+               }
+               a {
+                  height: 6rem;
+                  display: inline-block;
+                  margin: 0 15px;
+                  background-color: whitesmoke;
+                  padding: 12px 12px;
+                  border-radius: 10px;
+
+                  img {
+                     @include size(100%, 100%);
+                  }
+               }
+            }
+         }
+      }
+
+      /* Tablet Portrait */
+      @media (max-width: 991px) and (min-width: 768px) {
+         .wrapper {
+            @include size(100%, 20rem);
+
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin: 10rem 0;
+
+            .desc {
+               scale: 0.8;
+               padding: 0 5rem;
+
+               h2 {
+                  color: gainsboro;
+                  font-size: 80px;
+                  margin-bottom: 10px;
+               }
+               p {
+                  font-size: 40px;
+                  color: rgb(66, 66, 66);
+               }
+            }
+
+            .get-contact {
+               p {
+                  text-transform: uppercase;
+                  font-size: 25px; ////////////
+                  color: gray;
+                  margin-bottom: 16px;
+               }
+               a {
+                  height: 6rem;
+                  display: inline-block;
+                  margin: 0 15px;
+                  background-color: whitesmoke;
+                  padding: 12px 12px;
+                  border-radius: 10px;
+
+                  img {
+                     @include size(100%, 100%);
+                  }
+               }
+            }
+         }
+      }
+
+      /* Mobile Portrait */
+      @media (max-width: 767px) {
+         .wrapper {
+            @include size(100%, 40rem);
+
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+
+            .desc {
+               scale: 0.8;
+               // padding: 0 5rem;
+
+               h2 {
+                  color: gainsboro;
+                  font-size: 80px;
+                  margin-bottom: 10px;
+               }
+               h1 {
+                  font-size: 40px;
+               }
+               p {
+                  font-size: 32px;
+                  color: rgb(66, 66, 66);
+               }
+            }
+
+            .get-contact {
+               scale: 0.8;
+               p {
+                  text-transform: uppercase;
+                  font-size: 25px; ////////////
+                  color: gray;
+                  margin-bottom: 16px;
+               }
+               a {
+                  height: 6rem;
+                  display: inline-block;
+                  margin: 0 15px;
+                  background-color: whitesmoke;
+                  padding: 12px 12px;
+                  border-radius: 10px;
+
+                  img {
+                     @include size(100%, 100%);
+                  }
+               }
+            }
+         }
+      }
+   }
+}
+
+footer {
+   @include size(100%, fit-content);
+
+   display: flex;
+   justify-content: center;
+
+   .wrapper .left #address {
+      cursor: pointer;
+   }
+
+   /* Large Screens */
+   @media (min-width: 1400px) {
+      .wrapper {
+         @include size(90%, 20rem);
+
+         display: flex;
+         justify-content: center;
+         align-items: flex-start;
+         box-shadow: 0 0 30px rgba($color: #000000, $alpha: 0.1);
+         border-radius: 20px;
+         border-bottom-left-radius: 0px;
+         border-bottom-right-radius: 0px;
+
+         .left,
+         .center,
+         .right {
+            width: 32%;
+            height: 100%;
+            padding: 30px 30px;
+
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: column;
+         }
+
+         .left,
+         .right {
+            h1 {
+               font-size: 40px;
+               margin-bottom: 6px;
+            }
+            p {
+               font-size: 28px;
+            }
+            scale: 0.9;
+         }
+
+         .left {
+            text-align: left;
+            h1 {
+               align-self: flex-start;
+            }
+         }
+         .center {
+            display: flex;
+            flex-direction: column;
+
+            img {
+               @include size(100%, 100%);
+               object-fit: contain;
+               filter: saturate(2);
+               scale: 0.7;
+            }
+
+            h1 {
+               font-size: 40px;
+               text-align: center;
+            }
+         }
+         .right {
+            h1,
+            p {
+               align-self: flex-end;
+            }
+         }
+      }
+   }
+
+   /* Desktop and Laptop */
+   @media (min-width: 1200px) and (max-width: 1399px) {
+      .wrapper {
+         @include size(90%, 20rem);
+
+         display: flex;
+         justify-content: center;
+         align-items: flex-start;
+         box-shadow: 0 0 30px rgba($color: #000000, $alpha: 0.1);
+         border-radius: 20px;
+         border-bottom-left-radius: 0px;
+         border-bottom-right-radius: 0px;
+
+         .left,
+         .center,
+         .right {
+            width: 32%;
+            height: 100%;
+            padding: 30px 30px;
+
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: column;
+         }
+
+         .left,
+         .right {
+            h1 {
+               font-size: 40px;
+               margin-bottom: 6px;
+            }
+            p {
+               font-size: 28px;
+            }
+            scale: 0.9;
+         }
+
+         .left {
+            text-align: left;
+            h1 {
+               align-self: flex-start;
+            }
+         }
+         .center {
+            display: flex;
+            flex-direction: column;
+
+            img {
+               @include size(100%, 100%);
+               object-fit: contain;
+               filter: saturate(2);
+               scale: 0.7;
+            }
+
+            h1 {
+               font-size: 40px;
+               text-align: center;
+            }
+         }
+         .right {
+            h1,
+            p {
+               align-self: flex-end;
+            }
+         }
+      }
+   }
+
+   /* Pad Portrait */
+   @media (max-width: 1200px) and (min-width: 992px) {
+      .wrapper {
+         @include size(90%, fit-content);
+
+         display: grid;
+         grid-template-columns: 50% 50%;
+         grid-template-rows: 20rem;
+         grid-template-areas:
+            "c c"
+            "l r";
+         box-shadow: 0 0 30px rgba($color: #000000, $alpha: 0.1);
+         border-radius: 20px;
+         border-bottom-left-radius: 0px;
+         border-bottom-right-radius: 0px;
+
+         .left,
+         .center,
+         .right {
+            width: 100%;
+            height: 100%;
+            padding: 30px 30px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+         }
+
+         .left,
+         .right {
+            justify-content: flex-start;
+            h1 {
+               font-size: 40px;
+               margin-bottom: 6px;
+            }
+            p {
+               font-size: 28px;
+            }
+            // scale: 0.9;
+         }
+
+         .left {
+            grid-area: l;
+            text-align: center;
+         }
+         .center {
+            grid-area: c;
+            display: flex;
+            flex-direction: column;
+
+            img {
+               @include size(100%, 100%);
+               object-fit: contain;
+               filter: saturate(2);
+               scale: 0.7;
+            }
+
+            h1 {
+               font-size: 36px;
+               text-align: center;
+               padding: 0 16rem;
+            }
+         }
+         .right {
+            grid-area: r;
+            text-align: center;
+         }
+      }
+   }
+
+   /* Tablet Portrait */
+   @media (max-width: 991px) and (min-width: 768px) {
+      box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.1);
+      .wrapper {
+         @include size(100%, 100%);
+
+         display: grid;
+         grid-template-columns: 50% 50%;
+         grid-template-rows: 25rem 15rem;
+         grid-template-areas:
+            "c c"
+            "l r";
+
+         .left,
+         .center,
+         .right {
+            padding: 30px 30px;
+            gap: 20px;
+            // background-color: saddlebrown;
+         }
+
+         .left,
+         .right {
+            text-align: center;
+            h1 {
+               font-size: 32px;
+               margin-bottom: 6px;
+            }
+            p {
+               font-size: 22px;
+               padding: 0 20px;
+            }
+         }
+
+         .left {
+            grid-area: l;
+            // text-align: left;
+         }
+         .center {
+            grid-area: c;
+            display: flex;
+            flex-direction: column;
+            scale: 1; ////
+
+            img {
+               @include size(100%, 100%);
+               object-fit: contain;
+               filter: saturate(2);
+               scale: 0.7;
+            }
+
+            h1 {
+               font-size: 40px;
+               text-align: center;
+               line-height: 1.2;
+               margin-top: -5rem;
+            }
+         }
+         .right {
+            grid-area: r;
+            // text-align: right;
+         }
+      }
+   }
+
+   /* Mobile Portrait */
+   @media (max-width: 767px) {
+      box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.1);
+      .wrapper {
+         @include size(100, 100%);
+
+         display: grid;
+         grid-template-columns: 50% 50%;
+         grid-template-rows: 20rem;
+         grid-template-areas:
+            "c c"
+            "l l"
+            "r r";
+
+         .left,
+         .center,
+         .right {
+            padding: 30px 30px;
+            gap: 20px;
+            // background-color: saddlebrown;
+         }
+
+         .left,
+         .right {
+            text-align: center;
+            h1 {
+               font-size: 32px;
+               margin-bottom: 6px;
+            }
+            p {
+               font-size: 22px;
+            }
+         }
+
+         .left {
+            grid-area: l;
+            // text-align: left;
+         }
+         .center {
+            grid-area: c;
+            display: flex;
+            flex-direction: column;
+            scale: 0.9; ////
+
+            img {
+               @include size(100%, 100%);
+               object-fit: contain;
+               filter: saturate(2);
+               scale: 0.7;
+            }
+
+            h1 {
+               font-size: 40px;
+               text-align: center;
+               line-height: 1.2;
+            }
+         }
+         .right {
+            grid-area: r;
+            // text-align: right;
+         }
+      }
+   }
+}
+
+// Adds
+#adds {
+   @include size(100%, 100vh);
+   display: none;
+   position: fixed;
+   top: 0;
+   left: 0;
+   z-index: 0;
+
+   /* Mobile Portrait */
+   @media (max-width: 767px) {
+      display: none;
+      background-color: rgba($color: #000000, $alpha: 0.8);
+      z-index: 10;
+
+      .experience-phone-size {
+         @include size(70vw, 70%);
+
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         transform: translateX(-50%) translateY(-50%);
+         background-color: white;
+         box-shadow: 0 0 20px rgba($color: #000000, $alpha: 0.2);
+         border-radius: 10px;
+
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+
+         .top,
+         .mid,
+         .bottom {
+            display: flex;
+            text-align: center;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+         }
+         .top {
+            height: 60%;
+            position: relative;
+            box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.1);
+
+            img {
+               @include size(100%, 100%);
+               object-fit: cover;
+            }
+            h2 {
+               position: absolute;
+               padding: 10px 20px;
+               background-color: brown;
+               color: white;
+               word-spacing: -2px;
+               letter-spacing: -0.5px;
+               bottom: -20px; /////
+               font-size: 20px;
+               border-radius: 20px;
+            }
+         }
+         .bottom {
+            @include size(100%, 50%);
+            display: grid;
+            padding: 30px 30px;
+            // gap: 20px;
+            grid-template-columns: 50% 50%;
+            grid-template-areas:
+               "l r"
+               "b b";
+
+            .left,
+            .right,
+            button {
+               display: flex;
+               flex-direction: column;
+               align-items: center;
+               justify-content: center;
+               height: 100%;
+               border-radius: 12px;
+
+               h2 {
+                  font-size: 26px;
+                  letter-spacing: -1px;
+               }
+               p {
+                  font-size: 18px;
+               }
+            }
+            .left {
+               grid-area: l;
+            }
+            .right {
+               grid-area: r;
+            }
+            button {
+               @include size(100%, 100%);
+               grid-area: b;
+               border: none;
+
+               .img-wrapper {
+                  @include size(100%, 100%);
+                  background: url("../images/aks-close-icon.png");
+                  background-size: contain;
+                  background-repeat: no-repeat;
+                  background-position: 50%;
+                  scale: 0.4;
+               }
+            }
+         }
+      }
+   }
+}
+
+@keyframes pop {
+   50% {
+      scale: 1.1;
+   }
+}
+@keyframes stretch {
+   50% {
+      letter-spacing: -1px;
+   }
+}
+@keyframes stretch2 {
+   20% {
+      letter-spacing: 2px;
+      box-shadow: 0 0 40px rgba($color: #000000, $alpha: 0.2);
+   }
+   25% {
+      letter-spacing: 0px;
+      box-shadow: none;
+   }
+}
+@keyframes idle {
+   50% {
+      rotate: x 8deg;
+      transform: translateY(4px);
+   }
+}
+@keyframes fade-show {
+   0% {
+      opacity: 0;
+   }
+}
+@keyframes fade-hide {
+   0% {
+      opacity: 1;
+   }
+}
